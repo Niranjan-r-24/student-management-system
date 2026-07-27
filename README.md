@@ -15,7 +15,7 @@ A beginner-friendly Student Management System built using FastAPI and Streamlit.
 - Python
 - FastAPI
 - Streamlit
-- JSON
+- SQLite
 
 ## Installation
 
@@ -28,6 +28,9 @@ Run Backend
 ```bash
 uvicorn main:app --reload
 ```
+
+The first backend startup creates `students.db` and imports the existing
+`sample_data.json` records once. Future changes are stored in SQLite.
 
 Run Frontend
 

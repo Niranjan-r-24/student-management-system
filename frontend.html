@@ -1,122 +1,36 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Student Management System</title>
   <style>
-    :root { font-family: Inter, ui-sans-serif, system-ui, sans-serif; color: #eaf1ff; background: #0b1120; }
-    * { box-sizing: border-box; }
-    body { margin: 0; min-height: 100vh; background: radial-gradient(circle at 10% 0%, #213c80 0, transparent 36rem), #0b1120; }
-    header { padding: 28px clamp(20px, 6vw, 78px); display: flex; justify-content: space-between; gap: 20px; align-items: center; }
-    .brand { display: flex; gap: 13px; align-items: center; font-weight: 800; font-size: 1.16rem; }
-    .logo { display: grid; place-items: center; width: 40px; height: 40px; border-radius: 12px; background: #77ddff; color: #071221; font-size: 1.3rem; }
-    .docs { color: #b9caf0; text-decoration: none; font-weight: 650; }
-    main { max-width: 1240px; margin: 0 auto; padding: 22px clamp(20px, 6vw, 78px) 70px; }
-    .hero { display: flex; justify-content: space-between; gap: 30px; align-items: end; margin: 28px 0 34px; }
-    h1 { margin: 0; font-size: clamp(2.2rem, 5vw, 4.25rem); letter-spacing: -.055em; line-height: 1; }
-    .hero p { color: #aebdd7; max-width: 540px; line-height: 1.6; margin: 14px 0 0; }
-    button { cursor: pointer; border: 0; font: inherit; font-weight: 700; }
-    .primary { padding: 12px 16px; border-radius: 10px; background: #77ddff; color: #06111f; }
-    .primary:hover { background: #b7edff; }
-    .metrics { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
-    .metric, .panel { border: 1px solid #2a3a5c; background: rgba(18, 29, 52, .82); border-radius: 16px; box-shadow: 0 16px 45px rgba(0, 0, 0, .12); }
-    .metric { padding: 20px; }
-    .metric span { display: block; color: #9fb0cc; font-size: .83rem; font-weight: 700; text-transform: uppercase; letter-spacing: .07em; }
-    .metric strong { display: block; margin-top: 9px; font-size: 2rem; }
-    .layout { display: grid; grid-template-columns: minmax(290px, .8fr) 1.6fr; gap: 18px; margin-top: 18px; }
-    .panel { padding: 24px; }
-    h2 { margin: 0 0 18px; font-size: 1.2rem; }
-    form { display: grid; gap: 13px; }
-    label { display: grid; gap: 7px; color: #c3d0e7; font-size: .87rem; font-weight: 650; }
-    input { width: 100%; border: 1px solid #34486f; border-radius: 9px; padding: 11px 12px; background: #0c162a; color: #edf3ff; font: inherit; }
-    input:focus { outline: 2px solid #77ddff; outline-offset: 1px; }
-    .form-actions { display: flex; gap: 10px; margin-top: 5px; }
-    .secondary { padding: 11px 14px; border-radius: 9px; color: #c3d0e7; background: #263653; }
-    .notice { min-height: 22px; margin: 14px 0 0; color: #a7f3d0; font-weight: 650; font-size: .9rem; }
-    .notice.error { color: #ffb4b4; }
-    .table-tools { display: flex; justify-content: space-between; gap: 12px; align-items: center; margin-bottom: 15px; }
-    .search { max-width: 280px; }
-    .table-wrap { overflow-x: auto; }
-    table { width: 100%; border-collapse: collapse; min-width: 560px; }
-    th, td { padding: 13px 10px; border-bottom: 1px solid #2a3a5c; text-align: left; }
-    th { color: #9fb0cc; font-size: .76rem; letter-spacing: .07em; text-transform: uppercase; }
-    td { color: #dbe7fb; }
-    .row-actions { display: flex; gap: 7px; }
-    .small { padding: 7px 9px; border-radius: 7px; color: #dbe7fb; background: #263653; font-size: .78rem; }
-    .danger { color: #ffc3c3; background: #4a2837; }
-    .empty { color: #9fb0cc; padding: 28px 0 10px; text-align: center; }
-    @media (max-width: 850px) { .metrics { grid-template-columns: repeat(2, 1fr); } .layout { grid-template-columns: 1fr; } .hero { align-items: start; flex-direction: column; } }
-    @media (max-width: 480px) { header { padding-top: 20px; } .metrics { grid-template-columns: 1fr 1fr; } .metric { padding: 15px; } }
+    :root{font-family:Inter,ui-sans-serif,system-ui,sans-serif;color:#eaf1ff;background:#0a1020}*{box-sizing:border-box}body{margin:0;min-height:100vh;background:radial-gradient(circle at top left,#294990 0,transparent 42rem),#0a1020}.shell{display:grid;grid-template-columns:280px 1fr;min-height:100vh}.sidebar{padding:34px 20px;border-right:1px solid #263858;background:#0e1830}.brand{display:flex;align-items:center;gap:15px;margin:0 8px 42px;font-size:1.42rem;font-weight:850;line-height:1.05}.logo{display:grid;place-items:center;width:60px;height:60px;border-radius:18px;background:#7ae0ff;color:#06111f;font-size:2rem;box-shadow:0 10px 30px #0005}.brand small{display:block;margin-top:5px;color:#91a6cd;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase}.nav{display:grid;gap:7px}.nav button{width:100%;padding:13px 14px;border:0;border-radius:10px;background:transparent;color:#bbc9e3;text-align:left;font:inherit;font-weight:700;cursor:pointer}.nav button:hover,.nav button.active{background:#253b67;color:#fff}.nav span{display:inline-block;width:28px}.content{max-width:1280px;width:100%;margin:auto;padding:42px clamp(22px,6vw,78px)}.top{display:flex;justify-content:space-between;align-items:center;gap:18px;margin-bottom:28px}.top h1{margin:0;font-size:clamp(2.4rem,5vw,4.8rem);letter-spacing:-.06em;line-height:.95}.top p{margin:12px 0 0;color:#aebdd7}.docs{color:#c8d8f7;text-decoration:none;font-weight:700}.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:20px}.card,.panel{border:1px solid #2a3d63;border-radius:16px;background:#121f39cc;box-shadow:0 16px 45px #0002}.card{padding:20px}.card span{color:#9db0d0;font-size:.76rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase}.card strong{display:block;margin-top:7px;font-size:2rem}.panel{padding:25px}.pane{display:none}.pane.active{display:block}h2{margin:0 0 18px;font-size:1.35rem}form{display:grid;gap:14px;max-width:560px}label{display:grid;gap:7px;color:#c4d0e5;font-size:.87rem;font-weight:700}input,select{width:100%;padding:11px 12px;border:1px solid #3a507b;border-radius:9px;background:#0b1529;color:#edf4ff;font:inherit}input:focus,select:focus{outline:2px solid #7ae0ff;outline-offset:1px}.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:5px}button{font:inherit;font-weight:750;cursor:pointer;border:0}.primary,.secondary,.danger{padding:11px 14px;border-radius:9px}.primary{background:#7ae0ff;color:#071221}.secondary{background:#2a3d63;color:#e4edff}.danger{background:#542a3a;color:#ffc6ce}.notice{min-height:23px;color:#a7f3d0;font-weight:700}.notice.error{color:#ffb8bd}.toolbar{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:14px}.search{max-width:290px}.table-wrap{overflow:auto}table{width:100%;min-width:620px;border-collapse:collapse}th,td{padding:13px 10px;border-bottom:1px solid #2a3d63;text-align:left}th{color:#9db0d0;font-size:.75rem;letter-spacing:.08em;text-transform:uppercase}td{color:#dce8fb}.small{padding:7px 9px;border-radius:7px;background:#2a3d63;color:#e6efff;font-size:.78rem}.empty{padding:32px;color:#9db0d0;text-align:center}.attendance-row{display:grid;grid-template-columns:1fr 180px;gap:14px;align-items:center;padding:12px 0;border-bottom:1px solid #2a3d63}.attendance-row small{display:block;margin-top:3px;color:#9db0d0}@media(max-width:850px){.shell{grid-template-columns:1fr}.sidebar{border-right:0;border-bottom:1px solid #263858;padding:18px}.brand{margin:0 0 16px}.nav{grid-template-columns:repeat(3,1fr)}.content{padding-top:28px}.metrics{grid-template-columns:repeat(2,1fr)}}@media(max-width:520px){.nav{grid-template-columns:repeat(2,1fr)}.top h1{font-size:2.8rem}.attendance-row{grid-template-columns:1fr}.metrics{gap:9px}.card{padding:15px}}
   </style>
 </head>
-<body>
-  <header>
-    <div class="brand"><div class="logo">🎓</div>Student Management System</div>
-    <a class="docs" href="/docs" target="_blank" rel="noreferrer">API Docs ↗</a>
-  </header>
-  <main>
-    <section class="hero">
-      <div><h1>Your students,<br>in one place.</h1><p>Track student records, courses, and contact details from a simple dashboard.</p></div>
-      <button class="primary" type="button" onclick="resetForm()">+ Add student</button>
-    </section>
-    <section class="metrics">
-      <div class="metric"><span>Total students</span><strong id="total">—</strong></div>
-      <div class="metric"><span>AI students</span><strong id="ai">—</strong></div>
-      <div class="metric"><span>Data Science</span><strong id="ds">—</strong></div>
-      <div class="metric"><span>Average age</span><strong id="average">—</strong></div>
-    </section>
-    <section class="layout">
-      <article class="panel">
-        <h2 id="form-title">Add a student</h2>
-        <form id="student-form">
-          <label>Student ID<input id="id" type="number" min="1" required></label>
-          <label>Full name<input id="name" minlength="1" required></label>
-          <label>Age<input id="age" type="number" min="18" required></label>
-          <label>Course<input id="course" minlength="1" required></label>
-          <label>Email address<input id="email" type="email" required></label>
-          <div class="form-actions"><button class="primary" id="submit" type="submit">Save student</button><button class="secondary" type="button" onclick="resetForm()">Clear</button></div>
-        </form>
-        <p id="notice" class="notice" role="status"></p>
-      </article>
-      <article class="panel">
-        <div class="table-tools"><h2>Student directory</h2><input id="filter" class="search" placeholder="Search by name, course or email" oninput="renderTable()"></div>
-        <div class="table-wrap"><table><thead><tr><th>ID</th><th>Name</th><th>Age</th><th>Course</th><th>Email</th><th>Actions</th></tr></thead><tbody id="students"></tbody></table></div>
-      </article>
-    </section>
+<body><div class="shell">
+  <aside class="sidebar"><div class="brand"><div class="logo">🎓</div><div>Student Management<br>System<small>Admin dashboard</small></div></div>
+    <nav class="nav"><button class="active" data-pane="view"><span>▦</span>View Students</button><button data-pane="search"><span>⌕</span>Search Student</button><button data-pane="update"><span>✎</span>Update Student</button><button data-pane="delete"><span>⌫</span>Delete Student</button><button data-pane="attendance"><span>✓</span>Attendance</button></nav>
+  </aside>
+  <main class="content"><div class="top"><div><h1 id="page-title">Student Directory</h1><p id="page-subtitle">View and manage all student records.</p></div><a class="docs" href="/docs" target="_blank" rel="noreferrer">API Docs ↗</a></div>
+    <section class="metrics"><div class="card"><span>Total Students</span><strong id="total">—</strong></div><div class="card"><span>AI Students</span><strong id="ai">—</strong></div><div class="card"><span>Data Science</span><strong id="ds">—</strong></div><div class="card"><span>Average Age</span><strong id="average">—</strong></div></section>
+    <p id="notice" class="notice" role="status"></p>
+    <section id="view" class="pane active panel"><div class="toolbar"><h2>All Students</h2><input id="filter" class="search" placeholder="Search name, course or email" oninput="renderStudents()"></div><div class="table-wrap"><table><thead><tr><th>ID</th><th>Name</th><th>Age</th><th>Course</th><th>Email</th></tr></thead><tbody id="student-table"></tbody></table></div></section>
+    <section id="search" class="pane panel"><h2>Search Student</h2><form id="search-form"><label>Student ID<input id="search-id" type="number" min="1" required></label><div class="actions"><button class="primary">Search</button></div></form><div id="search-result"></div></section>
+    <section id="update" class="pane panel"><h2>Update Student</h2><form id="update-form"><label>Student ID<input id="update-id" type="number" min="1" required></label><div class="actions"><button class="secondary" type="button" id="load-student">Load student</button></div><label>Full name<input id="update-name" minlength="1" required></label><label>Age<input id="update-age" type="number" min="18" required></label><label>Course<input id="update-course" minlength="1" required></label><label>Email address<input id="update-email" type="email" required></label><div class="actions"><button class="primary">Save changes</button></div></form></section>
+    <section id="delete" class="pane panel"><h2>Delete Student</h2><p>Deleting a student also deletes their attendance records.</p><form id="delete-form"><label>Student ID<input id="delete-id" type="number" min="1" required></label><div class="actions"><button class="danger">Delete student</button></div></form></section>
+    <section id="attendance" class="pane panel"><div class="toolbar"><h2>Attendance</h2><label>Date<input id="attendance-date" type="date"></label></div><p>Choose each student's status, then save the attendance register.</p><div id="attendance-list"></div><div class="actions"><button class="primary" id="save-attendance">Save attendance</button></div></section>
   </main>
-  <script>
-    let students = [];
-    let editingId = null;
-    const fields = ["id", "name", "age", "course", "email"];
-    const notice = document.getElementById("notice");
-    const escapeHtml = (value) => String(value).replace(/[&<>'"]/g, char => ({"&":"&amp;","<":"&lt;",">":"&gt;","'":"&#39;",'"':"&quot;"}[char]));
-    function showNotice(message, error = false) { notice.textContent = message; notice.className = `notice${error ? " error" : ""}`; }
-    async function request(url, options) {
-      const response = await fetch(url, options);
-      if (!response.ok) { const body = await response.json().catch(() => ({})); throw new Error(body.detail || "Something went wrong."); }
-      return response.status === 204 ? null : response.json();
-    }
-    async function loadStudents() {
-      try { students = await request("/students"); renderMetrics(); renderTable(); } catch (error) { showNotice(error.message, true); }
-    }
-    function renderMetrics() {
-      const total = students.length;
-      document.getElementById("total").textContent = total;
-      document.getElementById("ai").textContent = students.filter(s => s.course.toLowerCase() === "ai").length;
-      document.getElementById("ds").textContent = students.filter(s => s.course.toLowerCase() === "data science").length;
-      document.getElementById("average").textContent = total ? (students.reduce((sum, s) => sum + s.age, 0) / total).toFixed(1) : "—";
-    }
-    function renderTable() {
-      const query = document.getElementById("filter").value.toLowerCase();
-      const visible = students.filter(s => `${s.name} ${s.course} ${s.email}`.toLowerCase().includes(query));
-      document.getElementById("students").innerHTML = visible.length ? visible.map(s => `<tr><td>${s.id}</td><td>${escapeHtml(s.name)}</td><td>${s.age}</td><td>${escapeHtml(s.course)}</td><td>${escapeHtml(s.email)}</td><td><div class="row-actions"><button class="small" onclick="editStudent(${s.id})">Edit</button><button class="small danger" onclick="deleteStudent(${s.id})">Delete</button></div></td></tr>`).join("") : '<tr><td class="empty" colspan="6">No students found.</td></tr>';
-    }
-    function resetForm() { editingId = null; document.getElementById("student-form").reset(); document.getElementById("id").disabled = false; document.getElementById("form-title").textContent = "Add a student"; document.getElementById("submit").textContent = "Save student"; showNotice(""); document.getElementById("id").focus(); }
-    function editStudent(id) { const student = students.find(s => s.id === id); if (!student) return; editingId = id; fields.forEach(field => document.getElementById(field).value = student[field]); document.getElementById("id").disabled = true; document.getElementById("form-title").textContent = `Edit ${student.name}`; document.getElementById("submit").textContent = "Update student"; showNotice(""); window.scrollTo({top: document.getElementById("student-form").getBoundingClientRect().top + scrollY - 24, behavior: "smooth"}); }
-    async function deleteStudent(id) { if (!confirm("Delete this student?")) return; try { await request(`/students/${id}`, {method: "DELETE"}); showNotice("Student deleted."); await loadStudents(); if (editingId === id) resetForm(); } catch (error) { showNotice(error.message, true); } }
-    document.getElementById("student-form").addEventListener("submit", async event => { event.preventDefault(); const student = Object.fromEntries(fields.map(field => [field, document.getElementById(field).value])); student.id = Number(student.id); student.age = Number(student.age); try { await request(editingId ? `/students/${editingId}` : "/students", {method: editingId ? "PUT" : "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify(student)}); showNotice(editingId ? "Student updated." : "Student added."); resetForm(); await loadStudents(); } catch (error) { showNotice(error.message, true); } });
-    loadStudents();
-  </script>
-</body>
-</html>
+</div><script>
+  let students=[];const notice=document.getElementById('notice');const panes={view:['Student Directory','View and manage all student records.'],search:['Search Student','Find a student by their ID.'],update:['Update Student','Load and edit an existing student record.'],delete:['Delete Student','Remove a student from the directory.'],attendance:['Attendance','Record daily student attendance.']};
+  const esc=v=>String(v).replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]));function msg(text,error=false){notice.textContent=text;notice.className=`notice${error?' error':''}`}async function api(url,options){const r=await fetch(url,options);if(!r.ok){const b=await r.json().catch(()=>({}));throw Error(b.detail||'Request failed.')}return r.status===204?null:r.json()}
+  function setPane(name){document.querySelectorAll('.pane').forEach(p=>p.classList.toggle('active',p.id===name));document.querySelectorAll('.nav button').forEach(b=>b.classList.toggle('active',b.dataset.pane===name));document.getElementById('page-title').textContent=panes[name][0];document.getElementById('page-subtitle').textContent=panes[name][1];msg('');if(name==='attendance')renderAttendance()}document.querySelectorAll('.nav button').forEach(b=>b.onclick=()=>setPane(b.dataset.pane));
+  function metrics(){const total=students.length;totalEl('total',total);totalEl('ai',students.filter(s=>s.course.toLowerCase()==='ai').length);totalEl('ds',students.filter(s=>s.course.toLowerCase()==='data science').length);totalEl('average',total?(students.reduce((n,s)=>n+s.age,0)/total).toFixed(1):'—')}function totalEl(id,value){document.getElementById(id).textContent=value}
+  function renderStudents(){const q=document.getElementById('filter').value.toLowerCase(),rows=students.filter(s=>`${s.name} ${s.course} ${s.email}`.toLowerCase().includes(q));document.getElementById('student-table').innerHTML=rows.length?rows.map(s=>`<tr><td>${s.id}</td><td>${esc(s.name)}</td><td>${s.age}</td><td>${esc(s.course)}</td><td>${esc(s.email)}</td></tr>`).join(''):'<tr><td colspan="5" class="empty">No students found.</td></tr>'}
+  async function loadStudents(){try{students=await api('/students');metrics();renderStudents();renderAttendance()}catch(e){msg(e.message,true)}}
+  document.getElementById('search-form').onsubmit=async e=>{e.preventDefault();try{const s=await api(`/students/${document.getElementById('search-id').value}`);document.getElementById('search-result').innerHTML=`<div class="panel" style="margin-top:20px"><strong>${esc(s.name)}</strong><p>ID ${s.id} · ${s.age} years · ${esc(s.course)}<br>${esc(s.email)}</p></div>`}catch(e){document.getElementById('search-result').innerHTML='';msg(e.message,true)}};
+  document.getElementById('load-student').onclick=async()=>{try{const s=await api(`/students/${document.getElementById('update-id').value}`);['name','age','course','email'].forEach(k=>document.getElementById(`update-${k}`).value=s[k])}catch(e){msg(e.message,true)}};
+  document.getElementById('update-form').onsubmit=async e=>{e.preventDefault();const id=Number(document.getElementById('update-id').value),body={id,name:document.getElementById('update-name').value,age:Number(document.getElementById('update-age').value),course:document.getElementById('update-course').value,email:document.getElementById('update-email').value};try{await api(`/students/${id}`,{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});msg('Student updated.');loadStudents()}catch(e){msg(e.message,true)}};
+  document.getElementById('delete-form').onsubmit=async e=>{e.preventDefault();const id=document.getElementById('delete-id').value;if(!confirm('Delete this student?'))return;try{await api(`/students/${id}`,{method:'DELETE'});msg('Student deleted.');e.target.reset();loadStudents()}catch(e){msg(e.message,true)}};
+  const dateInput=document.getElementById('attendance-date');dateInput.value=new Date().toISOString().slice(0,10);dateInput.onchange=renderAttendance;async function renderAttendance(){if(!students.length)return;let saved=[];try{saved=await api(`/attendance?attendance_date=${dateInput.value}`)}catch(e){if(document.getElementById('attendance').classList.contains('active'))msg(e.message,true)}const statuses=Object.fromEntries(saved.map(x=>[x.student_id,x.status]));document.getElementById('attendance-list').innerHTML=students.length?students.map(s=>`<div class="attendance-row"><div><strong>${esc(s.name)}</strong><small>${esc(s.course)} · ID ${s.id}</small></div><select data-student="${s.id}"><option value="present" ${statuses[s.id]!=='absent'?'selected':''}>Present</option><option value="absent" ${statuses[s.id]==='absent'?'selected':''}>Absent</option></select></div>`).join(''):'<p class="empty">Add students before recording attendance.</p>'}
+  document.getElementById('save-attendance').onclick=async()=>{const records=[...document.querySelectorAll('[data-student]')].map(x=>({student_id:Number(x.dataset.student),status:x.value}));if(!records.length){msg('Add students before recording attendance.',true);return}try{await api('/attendance',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({attendance_date:dateInput.value,records})});msg('Attendance saved.')}catch(e){msg(e.message,true)}};loadStudents();
+</script></body></html>

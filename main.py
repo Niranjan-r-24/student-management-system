@@ -1,5 +1,7 @@
 import sqlite3
+from datetime import date
 from pathlib import Path
+from typing import Literal
 
 from fastapi import FastAPI, HTTPException
 from fastapi.responses import FileResponse
@@ -18,6 +20,16 @@ class Student(BaseModel):
     age: int = Field(..., gt=17)
     course: str
     email: EmailStr
+
+
+class AttendanceRecord(BaseModel):
+    student_id: int = Field(..., gt=0)
+    status: Literal["present", "absent"]
+
+
+class AttendanceBatch(BaseModel):
+    attendance_date: date
+    records: list[AttendanceRecord] = Field(..., min_length=1)
 
 
 @app.on_event("startup")
@@ -141,3 +153,48 @@ def delete_student(student_id: int):
         status_code=404,
         detail="Student Not Found"
     )
+
+
+# -------------------------
+# Attendance
+# -------------------------
+@app.get("/attendance")
+def get_attendance(attendance_date: date | None = None):
+    query = """
+        SELECT attendance.student_id, students.name, attendance.attendance_date, attendance.status
+        FROM attendance
+        JOIN students ON students.id = attendance.student_id
+    """
+    params: tuple[str, ...] = ()
+    if attendance_date:
+        query += " WHERE attendance.attendance_date = ?"
+        params = (attendance_date.isoformat(),)
+    query += " ORDER BY attendance.attendance_date DESC, students.name"
+
+    with get_connection() as connection:
+        rows = connection.execute(query, params).fetchall()
+    return [dict(row) for row in rows]
+
+
+@app.post("/attendance")
+def save_attendance(batch: AttendanceBatch):
+    student_ids = {record.student_id for record in batch.records}
+    with get_connection() as connection:
+        rows = connection.execute("SELECT id FROM students").fetchall()
+        found_ids = {row["id"] for row in rows}
+        if found_ids != student_ids:
+            raise HTTPException(status_code=404, detail="One or more students were not found")
+
+        connection.executemany(
+            """
+            INSERT INTO attendance (student_id, attendance_date, status)
+            VALUES (?, ?, ?)
+            ON CONFLICT(student_id, attendance_date) DO UPDATE SET status = excluded.status
+            """,
+            [
+                (record.student_id, batch.attendance_date.isoformat(), record.status)
+                for record in batch.records
+            ],
+        )
+
+    return {"message": "Attendance saved successfully", "records_saved": len(batch.records)}

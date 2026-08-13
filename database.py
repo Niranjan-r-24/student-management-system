@@ -23,6 +23,7 @@ LEGACY_DATA_FILE = BASE_DIR / "sample_data.json"
 def get_connection():
     connection = sqlite3.connect(DATABASE_FILE)
     connection.row_factory = sqlite3.Row
+    connection.execute("PRAGMA foreign_keys = ON")
     try:
         yield connection
         connection.commit()
@@ -46,6 +47,18 @@ def initialize_database():
                 age INTEGER NOT NULL CHECK (age >= 18),
                 course TEXT NOT NULL CHECK (length(trim(course)) > 0),
                 email TEXT NOT NULL UNIQUE
+            )
+            """
+        )
+
+        connection.execute(
+            """
+            CREATE TABLE IF NOT EXISTS attendance (
+                student_id INTEGER NOT NULL,
+                attendance_date TEXT NOT NULL,
+                status TEXT NOT NULL CHECK (status IN ('present', 'absent')),
+                PRIMARY KEY (student_id, attendance_date),
+                FOREIGN KEY (student_id) REFERENCES students(id) ON DELETE CASCADE
             )
             """
         )

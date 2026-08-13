@@ -3,3 +3,5 @@ __pycache__/
 *.pyc
 .env
 students.db
+.venv/
+.venv-1/

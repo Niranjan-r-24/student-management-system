@@ -1,13 +1,21 @@
 """SQLite persistence helpers for the Student Management System."""
 
 import json
+import os
 import sqlite3
+import tempfile
 from contextlib import contextmanager
 from pathlib import Path
 
 
 BASE_DIR = Path(__file__).resolve().parent
-DATABASE_FILE = BASE_DIR / "students.db"
+# Vercel Functions mount deployment files as read-only. Its temporary directory
+# is the only writable location available to SQLite at runtime.
+DATABASE_FILE = (
+    Path(tempfile.gettempdir()) / "students.db"
+    if os.getenv("VERCEL")
+    else BASE_DIR / "students.db"
+)
 LEGACY_DATA_FILE = BASE_DIR / "sample_data.json"
 
 
